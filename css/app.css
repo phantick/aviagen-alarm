@@ -307,6 +307,9 @@ td.id, th.id {
 .dialog#MOBILE_USERS .added .item .text {
     line-height: 24px;
 }
+.dialog#MOBILE_USERS .added .item .text span {
+    font-size: 11px;
+}
 
 .dialog#MOBILE_USERS .added .item .up,
 .dialog#MOBILE_USERS .added .item .down,
@@ -355,6 +358,10 @@ td.id, th.id {
 
 .dialog#MOBILE_USERS .all .item .text {
     line-height: 24px;
+}
+
+.dialog#MOBILE_USERS .all .item .text span {
+    font-size: 11px;
 }
 
 .dialog#MOBILE_USERS .all .item .add {
