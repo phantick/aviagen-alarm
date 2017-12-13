@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Вход в Личный кабинет</title>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-migrate.min.js"></script>
+        <script type="text/javascript" src="js/jquery.event.hashchange.js"></script>
+        <script type="text/javascript" src="js/dot.js"></script>
+        <script type="text/javascript" src="js/api.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+
+        <script>
+            $(document).ready(function() {
+                App.authenticated(function(rc) {
+                    if (rc && rc.user_id) {
+                        App.start($("#app-container"), rc);
+                    } else {
+                        var $lc = $("#login-container"),
+                            $authError = $lc.find(".auth-error"),
+                            $login = $lc.find("#login"),
+                            $password = $lc.find("#password"),
+                            $btnLogin = $lc.find("#btnLogin");
+                        $login.add($password).keyup(function(e) {
+                            $authError.css("visibility", "hidden");
+                            if (e.keyCode == 13) {
+                                $btnLogin.click();
+                                return false;
+                            }
+                        });
+                        $btnLogin.click(function() {
+                            $authError.css("visibility", "hidden");
+                            App.authenticate($login.val(), $password.val(), function(auth) {
+                                if (auth && auth.user_id) {
+                                    $lc.remove();
+                                    App.start($("#app-container"), auth);
+                                } else {
+                                    $authError.css("visibility", "visible");
+                                }
+                            });
+                        });
+                        $lc.show();
+                        $login.focus();
+                    }
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <div class="body">
+            <div id="login-container" style="display: none;">
+                <div class="login-form">
+                    <div class="login-title">Пожалуйста, авторизуйтесь</div>
+                    <table class="loginTable">
+                        <tr>
+                            <td class="lbl">Логин</td>
+                            <td class="login">
+                                <div class="input">
+                                    <input type="text" id="login" maxlength="32" autocomplete="on"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="lbl">Пароль</td>
+                            <td class="pwd">
+                                <div class="input">
+                                    <input type="password" id="password" maxlength="32" autocomplete="on">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="auth-error">
+                        Вы указали неверный Логин или Пароль.
+                    </div>
+                    <div class="buttons">
+                        <div class="button" id="btnLogin">
+                            <div class="button-text">Войти</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="app-container" style="display: none;">
+                <div class="top-bar">
+                    <div class="left-side"></div>
+                    <div class="right-side">
+                        <div class="item name link" tag="profile"></div>
+                        <div class="item logout link" tag="logout">Выйти</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

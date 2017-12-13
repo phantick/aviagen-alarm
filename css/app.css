@@ -1,0 +1,293 @@
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color: #222222;
+}
+div.body {
+    height: 100%;
+}
+/* Common styles*/
+input:not([type=file]), textarea {
+    width: 150px;
+    height: 32px;
+    padding: 1px 8px;
+    font-size: 18px;
+    color: #222;
+    border: 1px solid #aaa;
+    outline: none;
+}
+input[type=checkbox] {
+    width: 32px;
+}
+input.error {
+    border-color: #ee4444;
+}
+.button {
+    background-color: #007010;
+    border-radius: 3px;
+    box-shadow: #004000 0 4px 0 0, #007010 0 -4px 0 0;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    height: 36px;
+    line-height: 32px;
+    min-width: 132px;
+    position: relative;
+}
+.button:hover {
+    background-color: #009030;
+    box-shadow: #004000 0 4px 0 0, #009030 0 -4px 0 0;
+}
+.button:active {
+    background-color: #009030;
+    box-shadow: 0 4px 0 0 #009030, 0 -4px 0 0 transparent;
+}
+.button .button-text {
+    text-align: center;
+    line-height: 32px;
+    padding: 0 24px;
+}
+.button:active .button-text {
+    line-height: 40px!important;
+}
+.link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.disabled {
+    cursor: default!important;
+    opacity: .5;
+}
+/* Login styles*/
+#login-container {
+    height: 100%;
+    min-width: 700px;
+    min-height: 700px;
+    text-align: center;
+    display: none;
+}
+#login-container .login-form {
+    display: inline-table;
+    margin-top: 15%;
+    box-shadow: 0 1px 4px #8b8b8b;
+    border: 1px solid #aaa;
+    padding: 24px;
+}
+#login-container .login-title {
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+#login-container tr {
+    height: 60px;
+}
+#login-container td.lbl {
+    width: 82px;
+    text-align: right;
+    padding-right: 12px;
+}
+#login-container .auth-error {
+    height: 18px;
+    font-size: 14px;
+    text-align: right;
+    padding: 4px;
+    color: #ee4444;
+    visibility: hidden;
+}
+#login-container .buttons {
+    text-align: right;
+    margin-top: 12px;
+    margin-right: 3px;
+}
+
+/* App styles*/
+#app-container .top-bar {
+    height: 24px;
+    border-bottom: 1px solid #eee;
+}
+#app-container .top-bar .left-side {
+    float: left;
+}
+#app-container .top-bar .right-side {
+    float: right;
+}
+#app-container .top-bar .left-side .item, #app-container .top-bar .right-side .item {
+    display: inline-block;
+    margin: 0 12px;
+    border-top: 4px solid transparent;
+}
+#app-container .top-bar .left-side .item.selected, #app-container .top-bar .right-side .item.selected {
+    border-top: 4px solid #009030;
+}
+#app-container .view {
+    display: none;
+}
+
+/* Admin styles */
+.admin-view .menu {
+    position: absolute;
+    width: 220px;
+    padding: 16px 0 16px 12px;
+}
+.admin-view .menu .item {
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+    margin: 8px 0;
+    padding-left: 8px;
+}
+.admin-view .menu .item:hover {
+    background-color: #eee;
+}
+.admin-view .menu .item.selected {
+    background-color: #aaa!important;
+}
+.admin-view .container {
+    min-height: 400px;
+    margin-left: 232px;
+    margin-top: 12px;
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.grid {
+    margin: 8px;
+    padding: 0;
+    border: 1px solid #eee;
+    border-collapse: collapse;
+}
+.grid tr, .grid td, .grid th {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+}
+.grid td, .grid th {
+    padding: 8px;
+    text-align: left;
+    width: 168px;
+    height: 38px;
+    text-align: left;
+}
+.grid th {
+    background-color: #eee;
+}
+.grid td.create {
+    background-color: #eee;
+}
+.grid td.editable {
+    cursor: pointer;
+}
+.grid td.action, .grid th.action {
+    width: 64px;
+}
+.grid tr:hover {
+    background-color: #eaffea;
+}
+
+td.id, th.id {
+    width: 42px;
+}
+.grid.mailboxes td.mobile_users .icon {
+    width: 38px;
+    height: 38px;
+    background: url("../images/users.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.grid.mailboxes td.mobile_users .icon:hover {
+    background-position: 0 -100px;
+}
+.grid.mailboxes .QUEUE td.mobile_users .icon {
+    background-position: -50px 0;
+}
+
+.grid.mailboxes .QUEUE td.mobile_users .icon:hover {
+    background-position: -50px -100px;
+}
+
+.dialog-helper {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: 800;
+}
+.dialog {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    z-index: 800;
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+.dialog table {
+    width: 100%;
+}
+.dialog table, .dialog table tr, .dialog table tr td {
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-collapse: collapse;
+}
+.dialog table tr td {
+    vertical-align: top;
+    padding: 8px;
+}
+.dialog table tr.thin td {
+    padding: 2px 8px;
+}
+.dialog .ttl {
+    font-size: 20px;
+    font-weight: bold;
+}
+.dialog .txt {
+    font-size: 12px;
+}
+.dialog .status {
+    font-size: 12px;
+    font-weight: bold;
+}
+.dialog .btns {
+    height: 24px;
+    margin-top: 8px;
+}
+.dialog input {
+    width: 100%;
+    margin: 0;
+}
+.dialog textarea {
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    resize: none;
+}
+
+.dialog#MOBILE_USERS {
+
+}
+
+.dialog#MOBILE_USERS .added {
+    width: 50%;
+    position: relative;
+    float: left;
+}
+
+.dialog#MOBILE_USERS .all {
+    width: 50%;
+    position: relative;
+    float: right;
+}
