@@ -748,10 +748,61 @@ App.admin.event_type = function() {
 
 App.admin.mailbox = function() {
     var $c, $view, $table, template, initialized,
+        $addedItemTmpl = $("<div class='item'><div class='text'></div><div class='up'></div><div class='down'></div><div class='rm'></div></div>"),
+        $allItemTmpl = $("<div class='item'><div class='add'></div><div class='text'></div></div>"),
+        d = App.admin.Dialog.getDialog("MOBILE_USERS",
+            {width: "720px", position: "center"},
+            {},
+            {
+                "close": function() {
+                    d.close();
+                },
+                "save": function() {
+                    var $d = d.getContainer();
+                    d.close();
+                }
+            },
+            {"27" : "close", "13" : "save"}
+        ),
+        $d = d.getContainer(),
+        $added = $d.find(".added"),
+        $all = $d.find(".all"),
+
         init = function($cont) {
             if (initialized) return;
             $c = $cont;
             template = doT.template($("#adminMailboxTableTmpl").text())();
+
+            $addedItemTmpl.find(".up").moclick(function() {
+                var $this = $(this),
+                    $item = $this.parents(".item:first"),
+                    $prev = $item.prev(".item");
+                $item.insertBefore($prev)
+            });
+            $addedItemTmpl.find(".down").moclick(function() {
+                var $this = $(this),
+                    $item = $this.parents(".item:first"),
+                    $next = $item.next(".item");
+                $item.insertAfter($next)
+            });
+            $addedItemTmpl.find(".rm").moclick(function() {
+                var $this = $(this),
+                    $item = $this.parents(".item:first"),
+                    id = $item.attr("tag");
+                $item.remove();
+                $all.find(".item[tag='"+id+"']").show();
+            });
+
+            $allItemTmpl.find(".add").moclick(function() {
+                var $this = $(this),
+                    $item = $this.parents(".item:first"),
+                    id = $item.attr("tag"),
+                    $newItem = $addedItemTmpl.clone(true).attr("tag", id);
+
+                $newItem.find(".text").html($item.find(".text").html());
+                $added.append($newItem);
+                $item.hide();
+            });
 
             initialized = true;
         },
@@ -766,27 +817,8 @@ App.admin.mailbox = function() {
                         if (mailbox && mailbox.item) {
                             API.mobile_userList(function(data) {
                                 if (data && data.mobile_users) {
-                                    var d = App.admin.Dialog.getDialog("MOBILE_USERS",
-                                        {width: "720px", position: "center"},
-                                        {},
-                                        {
-                                            "close": function() {
-                                                d.close();
-                                            },
-                                            "save": function() {
-                                                var $d = d.getContainer();
-                                                d.close();
-                                            }
-                                        },
-                                        {"27" : "close", "13" : "save"}
-                                    );
                                     var all = data.mobile_users||[],
-                                        added = [],
-                                        $d = d.getContainer(),
-                                        $added = $d.find(".added"),
-                                        $all = $d.find(".all"),
-                                        $addedItemTmpl = $("<div class='item'><div class='text'></div><div class='up'></div><div class='down'></div><div class='rm'></div></div>"),
-                                        $allItemTmpl = $("<div class='item'><div class='add'></div><div class='text'></div></div>");
+                                        added = [];
 
                                     (mailbox.item.mailbox_users||[]).forEach(function(u) {
                                         added.push(u.MOBILE_USER_ID);
