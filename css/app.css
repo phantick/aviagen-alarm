@@ -13,6 +13,10 @@ div.body {
     height: 100%;
 }
 /* Common styles*/
+div.clear {
+    clear: both;
+    float: none;
+}
 input:not([type=file]), textarea {
     width: 150px;
     height: 32px;
@@ -40,6 +44,8 @@ input.error {
     line-height: 32px;
     min-width: 132px;
     position: relative;
+    text-align: center;
+    margin-left: 12px;
 }
 .button:hover {
     background-color: #009030;
@@ -234,6 +240,9 @@ td.id, th.id {
     -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
+.dialog .wrap {
+    margin: 16px;
+}
 .dialog table {
     width: 100%;
 }
@@ -253,6 +262,7 @@ td.id, th.id {
 .dialog .ttl {
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 16px;
 }
 .dialog .txt {
     font-size: 12px;
@@ -262,7 +272,7 @@ td.id, th.id {
     font-weight: bold;
 }
 .dialog .btns {
-    height: 24px;
+    height: 48px;
     margin-top: 8px;
 }
 .dialog input {
@@ -282,12 +292,50 @@ td.id, th.id {
 
 .dialog#MOBILE_USERS .added {
     width: 50%;
-    position: relative;
-    float: left;
 }
 
 .dialog#MOBILE_USERS .all {
     width: 50%;
+}
+
+.dialog#MOBILE_USERS .added .item {
     position: relative;
-    float: right;
+    padding-left: 48px;
+    padding-right: 24px;
+}
+
+.dialog#MOBILE_USERS .added .item .text {
+
+}
+
+.dialog#MOBILE_USERS .added .item .up,
+.dialog#MOBILE_USERS .added .item .down,
+.dialog#MOBILE_USERS .added .item .rm {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+}
+.dialog#MOBILE_USERS .added .item .up {
+    left: 24px;
+    top: 0;
+    background-image: url("../images/up.png");
+}
+.dialog#MOBILE_USERS .added .item .up:hover {
+    background-position: 0 -24px;
+}
+
+.dialog#MOBILE_USERS .added .item .down {
+    left: 0;
+    top: 0;
+    background-image: url("../images/down.png");
+}
+
+.dialog#MOBILE_USERS .added .item .down:hover {
+    background-position: 0 -24px;
+}
+.dialog#MOBILE_USERS .added .item .rm {
+    right: 0;
+    top: 0;
+    background-image: url("../images/rm.png");
 }

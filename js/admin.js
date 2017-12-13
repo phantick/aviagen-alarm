@@ -387,7 +387,7 @@ App.admin = function() {
 
 App.admin.Dialog = (function() {
     var _dialogs = {
-            'MOBILE_USERS': "<div style='margin: 8px 8px 16px 8px;'><div class='ttl'>Укажите пользователей почтового ящика</div><div class='content'><div class='added'></div><div class='all'></div></div><div class='btns'><div class='button enabled' id='close' style='float: right;'>Закрыть</div><div class='button enabled' id='save' style='float: right;'>Сохранить</div></div></div>"
+            'MOBILE_USERS': "<div class='wrap'><div class='ttl'>Укажите пользователей почтового ящика</div><table class='content'><tr><td class='added'></td><td class='all'></td></tr></table><div class='clear'></div><div class='btns'><div class='button enabled' id='close' style='float: right;'>Закрыть</div><div class='button enabled' id='save' style='float: right;'>Сохранить</div></div></div>"
         },
         _getDialog = function (code, params, substs, cbs, hotkeys) {
             var hothandler = null;
