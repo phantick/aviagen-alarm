@@ -820,6 +820,8 @@ App.admin.mailbox = function() {
                                     var all = data.mobile_users||[],
                                         added = [];
 
+                                    $all.empty();
+                                    $added.empty();
                                     (mailbox.item.mailbox_users||[]).forEach(function(u) {
                                         added.push(u.MOBILE_USER_ID);
                                         var $item = $addedItemTmpl.clone(true).attr("tag", u.MOBILE_USER_ID);
