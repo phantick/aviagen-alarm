@@ -784,16 +784,18 @@ App.admin.mailbox = function() {
                                         added = [],
                                         $d = d.getContainer(),
                                         $added = $d.find(".added"),
-                                        $all = $d.find(".all");
+                                        $all = $d.find(".all"),
+                                        $addedItemTmpl = $("<div class='item'><div class='text'></div><div class='up'></div><div class='down'></div><div class='rm'></div></div>"),
+                                        $allItemTmpl = $("<div class='item'><div class='add'></div><div class='text'></div></div>");
 
                                     (mailbox.item.mailbox_users||[]).forEach(function(u) {
                                         added.push(u.MOBILE_USER_ID);
-                                        var $item = $("<div class='item'><div class='text'></div><div class='up'></div><div class='down'></div><div class='rm'></div></div>");
+                                        var $item = $addedItemTmpl.clone(true).attr("tag", u.ID);
                                         $item.find(".text").text(u.MOBILE_USER_NAME).append($("<span></span>").text(" ("+u.MOBILE_USER_MOBILE+")"));
                                         $added.append($item)
                                     });
                                     all.forEach(function(u) {
-                                        var $item = $("<div class='item'><div class='add'></div><div class='text'></div></div>");
+                                        var $item = $allItemTmpl.clone(true).attr("tag", u.ID);
                                         $item.find(".text").text(u.NAME).append($("<span></span>").text(" ("+u.MOBILE+")"));
                                         if (added.indexOf(u.ID) >= 0) {
                                             $item.hide();
