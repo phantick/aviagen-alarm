@@ -767,17 +767,18 @@ App.admin.mailbox = function() {
                             API.mobile_userList(function(data) {
                                 if (data && data.mobile_users) {
                                     var d = App.admin.Dialog.getDialog("MOBILE_USERS",
-                                        {width: "520px", position: "center"},
+                                        {width: "720px", position: "center"},
                                         {},
-                                        {"close": function() {
-                                            d.close();
-                                        },
+                                        {
+                                            "close": function() {
+                                                d.close();
+                                            },
                                             "save": function() {
                                                 var $d = d.getContainer();
-                                                d.close();}
+                                                d.close();
+                                            }
                                         },
-                                        {"27" : "close", "13" : "save"}, function() {
-                                        }
+                                        {"27" : "close", "13" : "save"}
                                     );
                                     var all = data.mobile_users||[],
                                         added = [],

@@ -305,7 +305,7 @@ td.id, th.id {
 }
 
 .dialog#MOBILE_USERS .added .item .text {
-
+    line-height: 24px;
 }
 
 .dialog#MOBILE_USERS .added .item .up,
@@ -315,7 +315,15 @@ td.id, th.id {
     width: 24px;
     height: 24px;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
+
+.dialog#MOBILE_USERS .added .item .up.disabled,
+.dialog#MOBILE_USERS .added .item .down.disabled,
+.dialog#MOBILE_USERS .added .item .rm.disabled {
+    cursor: default;
+}
+
 .dialog#MOBILE_USERS .added .item .up {
     left: 24px;
     top: 0;
@@ -338,4 +346,30 @@ td.id, th.id {
     right: 0;
     top: 0;
     background-image: url("../images/rm.png");
+}
+
+.dialog#MOBILE_USERS .all .item {
+    position: relative;
+    padding-left: 32px;
+}
+
+.dialog#MOBILE_USERS .all .item .text {
+    line-height: 24px;
+}
+
+.dialog#MOBILE_USERS .all .item .add {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    left: 0;
+    top: 0;
+    background-image: url("../images/left.png");
+    cursor: pointer;
+}
+.dialog#MOBILE_USERS .all .item .add.disabled {
+    cursor: default!important;
+}
+.dialog#MOBILE_USERS .all .item .add:hover {
+    background-position: 0 -24px;
 }
