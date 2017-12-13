@@ -789,12 +789,12 @@ App.admin.mailbox = function() {
                                     (mailbox.item.mailbox_users||[]).forEach(function(u) {
                                         added.push(u.MOBILE_USER_ID);
                                         var $item = $("<div class='item'><div class='text'></div><div class='up'></div><div class='down'></div><div class='rm'></div></div>");
-                                        $item.find(".text").text(u.MOBILE_USER_NAME+" ("+u.MOBILE_USER_MOBILE+")");
+                                        $item.find(".text").text(u.MOBILE_USER_NAME).append($("<span></span>").text(" ("+u.MOBILE_USER_MOBILE+")"));
                                         $added.append($item)
                                     });
                                     all.forEach(function(u) {
                                         var $item = $("<div class='item'><div class='add'></div><div class='text'></div></div>");
-                                        $item.find(".text").text(u.NAME+" ("+u.MOBILE+")");
+                                        $item.find(".text").text(u.NAME).append($("<span></span>").text(" ("+u.MOBILE+")"));
                                         if (added.indexOf(u.ID) >= 0) {
                                             $item.hide();
                                         }
