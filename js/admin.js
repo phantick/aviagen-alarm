@@ -790,7 +790,7 @@ App.admin.mailbox = function() {
 
                                     (mailbox.item.mailbox_users||[]).forEach(function(u) {
                                         added.push(u.MOBILE_USER_ID);
-                                        var $item = $addedItemTmpl.clone(true).attr("tag", u.ID);
+                                        var $item = $addedItemTmpl.clone(true).attr("tag", u.MOBILE_USER_ID);
                                         $item.find(".text").text(u.MOBILE_USER_NAME).append($("<span></span>").text(" ("+u.MOBILE_USER_MOBILE+")"));
                                         $added.append($item)
                                     });
