@@ -750,6 +750,7 @@ App.admin.mailbox = function() {
     var $c, $view, $table, template, initialized,
         $addedItemTmpl = $("<div class='item'><div class='text'></div><div class='up'></div><div class='down'></div><div class='rm'></div></div>"),
         $allItemTmpl = $("<div class='item'><div class='add'></div><div class='text'></div></div>"),
+        $added, $all,
 
         init = function($cont) {
             if (initialized) return;
@@ -816,7 +817,8 @@ App.admin.mailbox = function() {
                                             },
                                             {"27" : "close", "13" : "save"}
                                         ),
-                                        $d = d.getContainer(),
+                                        $d = d.getContainer();
+
                                         $added = $d.find(".added"),
                                         $all = $d.find(".all");
 
