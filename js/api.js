@@ -210,8 +210,15 @@ API = function() {
                 if (cb) cb((rc||{}));
             });
         },
+
         mailboxDelete = function(id, cb) {
             apiCall("mailbox:delete", {ID: id}, function(rc) {
+                if (cb) cb((rc||{}));
+            });
+        },
+
+        mailboxSetMobileUsers = function(data, cb) {
+            apiCall("mailbox:setMobileUsers", data||{}, function(rc) {
                 if (cb) cb((rc||{}));
             });
         },
@@ -257,11 +264,12 @@ API = function() {
         event_typeUpdate:   event_typeUpdate,
         event_typeDelete:   event_typeDelete,
 
-        mailboxList:        mailboxList,
-        mailboxGet:         mailboxGet,
-        mailboxCreate:      mailboxCreate,
-        mailboxUpdate:      mailboxUpdate,
-        mailboxDelete:      mailboxDelete,
+        mailboxList:            mailboxList,
+        mailboxGet:             mailboxGet,
+        mailboxCreate:          mailboxCreate,
+        mailboxUpdate:          mailboxUpdate,
+        mailboxDelete:          mailboxDelete,
+        mailboxSetMobileUsers:  mailboxSetMobileUsers,
 
         eventsList:         eventsList
     }

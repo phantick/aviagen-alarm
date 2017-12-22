@@ -493,7 +493,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $l = new mailbox(get_object_vars($data));
                     $id = $l->save();
                     if ($id == null) {
-                        $ret->errors = $event_type->errors;
+                        $ret->errors = $l->errors;
                         $ret->error = $db->getLastError();
                     } else {
                         $ret->ID = $id;
@@ -503,7 +503,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($l instanceof mailbox) {
                         $rc = $l->save(get_object_vars($data));
                         if (!$rc) {
-                            $ret->errors = $event_type->errors;
+                            $ret->errors = $l->errors;
                             $ret->error = $db->getLastError();
                         }
                     } else {
@@ -514,8 +514,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($l instanceof mailbox) {
                         $rc = $l->delete();
                         if (!$rc) {
-                            $ret->errors = $event_type->errors;
+                            $ret->errors = $l->errors;
                             $ret->error = $db->getLastError();
+                        }
+                    } else {
+                        $ret->error = "Mailbox not found";
+                    }
+                } else if ($op[1] == "setMobileUsers" && is_int($data->ID)) {
+                    $l = mailbox::byId($data->ID);
+                    if ($l instanceof mailbox) {
+                        mailbox_user::where("MAILBOX_ID", $data->ID)>delete();
+                        if (!$rc) {
+                            $ret->error = $db->getLastError();
+                        }
+
+                        for ($i=0; $i<count($data->MOBILE_USERS); $i++) {
+                            $mu = (object)array();
+                            $mu->MAILBOX_ID = $data->ID;
+                            $mu->MOBILE_USER_ID = $data->MOBILE_USERS[$i];
+                            $mu->ORDERNUMBER = $i+1;
+                            $mailbox_user = new mailbox_user(get_object_vars($mu));
+                            $id = $mailbox_user->save();
+                            if ($id == null) {
+                                $ret->errors = $$mailbox_user->errors;
+                                $ret->error = $db->getLastError();
+                            }
                         }
                     } else {
                         $ret->error = "Mailbox not found";
@@ -535,6 +558,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $li->ID = $l->ID;
                             $li->MAILBOX_ID = $l->MAILBOX_ID;
                             $li->MOBILE_USER_ID = $l->MOBILE_USER_ID;
+                            $li->ORDERNUMBER = $l->ORDERNUMBER;
                             $ret->list[] = $li;
                         }
                     }
@@ -545,15 +569,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $li->ID = $l->ID;
                         $li->MAILBOX_ID = $l->MAILBOX_ID;
                         $li->MOBILE_USER_ID = $l->MOBILE_USER_ID;
+                        $li->ORDERNUMBER = $l->ORDERNUMBER;
                         $ret->item = $li;
                     } else {
                         $ret->error = "Mailbox user not found";
                     }
                 } else if ($op[1] == "create") {
-                    $li = new mailbox_user(get_object_vars($data));
-                    $id = $mailbox_user->save();
+                    $l = new mailbox_user(get_object_vars($data));
+                    $id = $l->save();
                     if ($id == null) {
-                        $ret->errors = $event_type->errors;
+                        $ret->errors = $l->errors;
                         $ret->error = $db->getLastError();
                     } else {
                         $ret->ID = $id;
@@ -563,7 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($l instanceof mailbox_user) {
                         $rc = $l->save(get_object_vars($data));
                         if (!$rc) {
-                            $ret->errors = $event_type->errors;
+                            $ret->errors = $l->errors;
                             $ret->error = $db->getLastError();
                         }
                     } else {
@@ -574,7 +599,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($l instanceof mailbox_user) {
                         $rc = $l->delete();
                         if (!$rc) {
-                            $ret->errors = $event_type->errors;
+                            $ret->errors = $l->errors;
                             $ret->error = $db->getLastError();
                         }
                     } else {

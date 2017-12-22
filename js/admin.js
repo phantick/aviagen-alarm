@@ -811,7 +811,14 @@ App.admin.mailbox = function() {
                                                     d.close();
                                                 },
                                                 "save": function() {
-                                                    var $d = d.getContainer();
+                                                    var mailboxUsers = [];
+                                                    $added.find(".item").each(function() {
+                                                        mailboxUsers.push(Number($(this).attr("tag")));
+                                                    });
+                                                    API.mailboxSetMobileUsers({ID: id, MOBILE_USERS: mailboxUsers}, function(rc) {
+
+                                                    });
+
                                                     d.close();
                                                 }
                                             },
