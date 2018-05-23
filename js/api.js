@@ -228,6 +228,18 @@ API = function() {
             apiCall("event:list", {}, function(rc) {
                 if (cb) cb((rc||{}));
             });
+        }
+
+        // XLS_DATA
+        xlsDates = function(cb) {
+            apiCall("xls_data:dates", {}, function(rc) {
+                if (cb) cb((rc||{}));
+            });
+        },
+        xlsUpdate = function(cb) {
+            apiCall("xls_data:update", {}, function(rc) {
+                if (cb) cb((rc||{}));
+            });
         };
     return {
         authenticated: authenticated,
@@ -271,6 +283,9 @@ API = function() {
         mailboxDelete:          mailboxDelete,
         mailboxSetMobileUsers:  mailboxSetMobileUsers,
 
-        eventsList:         eventsList
-    }
+        eventsList:         eventsList,
+
+        xlsDates:         	xlsDates,
+        xlsUpdate:			xlsUpdate
+}
 }();

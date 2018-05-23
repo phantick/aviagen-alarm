@@ -217,8 +217,9 @@ function loadPlugins($c, callback) {
 }
 
 App = function() {
-    var $c, isAdmin, userId, userName,
-
+    var $c, isAdmin, userId, userName, disabld = false,
+        $fg = $("<div class='fg'><div class='shader'></div></div>"),
+        $spinner = $("<div class='spinner'></div>"),
         authenticated = function(cb) {
             API.authenticated(cb);
         },
@@ -240,19 +241,21 @@ App = function() {
             userName = authData.user_nsme;
 
             $c.find(".name").text(authData.user_name);
-            PLUGINS.push("history");
             if (isAdmin) {
-                $c.find(".top-bar .left-side").append("<div class='item link' tag='admin'>Администрирование</div><div class='item link' tag='history'>История</div>")
-                $c.find(".top-bar .item").click(function() {
-                    var $this = $(this), tag = $this.attr("tag");
-                    if (tag == "logout") {
-                        logout();
-                    } else {
-                        location.hash = $this.attr("tag");
-                    }
-                });
+                $c.find(".top-bar .left-side").append("<div class='item link' tag='admin'>Администрирование</div>")
                 PLUGINS.push("admin");
             }
+            PLUGINS.push("history");
+            PLUGINS.push("stat");
+            $c.find(".top-bar .left-side").append("<div class='item link' tag='history'>История</div><div class='item link' tag='stat'>Статистика</div>")
+            $c.find(".top-bar .item").click(function() {
+                var $this = $(this), tag = $this.attr("tag");
+                if (tag == "logout") {
+                    logout();
+                } else {
+                    location.hash = $this.attr("tag");
+                }
+            });
             loadPlugins($c, function() {
                 $(window).hashchange(function(e) {
                     var hash = location.hash.substring(1).split("/"),
@@ -272,17 +275,31 @@ App = function() {
 
                 if (!location.hash || location.hash == "#") {
                     if (isAdmin) location.hash = "admin";
-                    else location.hash = "history";
+                    else location.hash = "stat";
                 } else {
                     $(window).hashchange()
                 }
                 $c.show();
             });
+        }, 
+        disable = function(showSpinner) {
+	        $(document.body).append($fg);
+	        if (showSpinner) {
+				$(document.body).append($spinner);	
+	        }
+	        disabled = true;
+        }, 
+        enable = function() {
+	        $fg.detach();
+	        $spinner.detach();
+	        disabled = false;
         };
     return {
         authenticated: authenticated,
         authenticate: authenticate,
         logout: logout,
-        start: start
+        start: start,
+        disable: disable,
+        enable: enable
     }
 }()

@@ -19,11 +19,12 @@ App.admin = function() {
         show = function($cont, path) {
             if (!initialized) init($cont);
 
+            var p = path[0]||"user";
             $menuItems.removeClass("selected");
-            $menuItems.filter("[tag="+path[0]+"]").addClass("selected");
+            $menuItems.filter("[tag="+p+"]").addClass("selected");
 
             for (var v in App.admin) {
-                if (v == path[0]) {
+                if (v == p) {
                     if (App.admin[v].show) App.admin[v].show($container);
                 } else {
                     if (App.admin[v].hide) App.admin[v].hide($container);
@@ -32,6 +33,7 @@ App.admin = function() {
             $view.show();
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             $view.hide();
         },
         fillData = function($t, data, controlsData, save, del) {
@@ -114,7 +116,7 @@ App.admin = function() {
                                 $td.text("******");
                             } else {
                                 $td.attr("val", data[i][tag]);
-                                $td.text(data[i][showTag || tag]==null?"------":data[i][showTag || tag]);
+                                $td.text(!data[i][showTag || tag]?"------":data[i][showTag || tag]);
                             }
                         }
                     }
@@ -438,6 +440,7 @@ App.admin.Dialog = (function() {
             return (function () {
                 var
                     _show = function (animate, cb) {
+                    	App.disable();
                         if (animate) {
                             var pos = $dialog.position();
                             var $dhelper = $("<div class='dialog-helper'></div>");
@@ -464,6 +467,7 @@ App.admin.Dialog = (function() {
                         if (hothandler) $(document).bind("keyup", hothandler);
                     },
                     _hide = function (animate, cb) {
+                    	App.enable();
                         if (hothandler)
                             $(document).unbind("keyup", hothandler);
                         if (animate) {
@@ -492,6 +496,7 @@ App.admin.Dialog = (function() {
                         }
                     },
                     _close = function () {
+                    	App.enable();
                         if (hothandler)
                             $(document).unbind("keyup", hothandler);
                         $dialog.remove();
@@ -543,6 +548,7 @@ App.admin.user = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 
@@ -581,6 +587,7 @@ App.admin.role = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 
@@ -623,6 +630,7 @@ App.admin.mobile_user = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 
@@ -661,6 +669,7 @@ App.admin.sms_status = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 
@@ -699,6 +708,7 @@ App.admin.sms_error = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 
@@ -737,6 +747,7 @@ App.admin.event_type = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 
@@ -863,6 +874,7 @@ App.admin.mailbox = function() {
             });
         },
         hide = function($cont) {
+            if (!initialized) init($cont);
             if ($view) $view.hide();
         };
 

@@ -13,6 +13,33 @@ div.body {
     height: 100%;
 }
 /* Common styles*/
+.fg {
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 50;
+}
+.fg .shader {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	opacity: .4;
+	filter: alpha(opacity=40);
+	background-color: slategray;
+}
+.spinner {
+	position: absolute;
+    margin: auto;
+    height: 88px;
+    width: 88px;
+    top: 200px;
+    left: 49%;
+    background: url("../images/loading.gif") no-repeat;
+}
 div.clear {
     clear: both;
     float: none;
@@ -379,4 +406,31 @@ td.id, th.id {
 }
 .dialog#MOBILE_USERS .all .item .add:hover {
     background-position: 0 -24px;
+}
+
+.stat-view .mydatepicker {
+    position: absolute;
+    width: 255px;
+    top: 42px;
+    left: 12px;
+}
+
+.stat-view .container {
+	margin-left: 278px;
+}
+.stat-view .container .buttons {
+	margin-top: 18px;
+}
+.stat-view .container .buttons a {
+	color: black;
+}
+.stat-view .container .buttons a:visited {
+	color: black;
+}
+.gridlines td {
+    border: none!important;
+}
+#btnUpdate{
+	margin-top: 16px;
+	margin-left: 28px;
 }
