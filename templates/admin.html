@@ -1,0 +1,126 @@
+<script type="text/javascript" src="js/admin.js"></script>
+
+<script id="adminViewTmpl" type="text/x-dot-template">
+    <div class="view admin-view">
+        <div class="menu">
+            <div class="item" tag="user">Пользователи</div>
+            <div class="item" tag="mobile_user">Мобильные пользователи</div>
+            <div class="item" tag="mailbox">Почтовые ящики</div>
+            <div class="item" tag="role">Роли</div>
+            <div class="item" tag="event_type">Типы событий</div>
+            <div class="item" tag="sms_status">Статусы СМС</div>
+            <div class="item" tag="sms_error">Ошибки СМС</div>
+        </div>
+        <div class="container">
+            <h1>Title</h1>
+        </div>
+    </div>
+</script>
+
+<script id="adminUserTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid users">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="login editable" tag="LOGIN" type="text" maxlength="32" mandatoty="true">Логин</th>
+                <th class="password editable" tag="PASSWORD" type="text" maxlength="32" mandatoty="true" hidden-value="true">Пароль</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="255" mandatoty="true">Имя</th>
+                <th class="email editable" tag="EMAIL" type="text" maxlength="255" mandatoty="true">E-Mail</th>
+                <th class="role editable" tag="ROLE_ID" showTag="ROLE_NAME" type="select" object="role" mandatoty="true">Роль</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script id="adminRoleTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid roles">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="code editable" tag="CODE" type="text" maxlength="32" mandatoty="true">Код</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="50" mandatoty="true">Название</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script id="adminMobileUserTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid mobile_users">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="255" mandatoty="true">Имя</th>
+                <th class="mobile editable" tag="MOBILE" type="text" maxlength="20" mandatoty="true">Телефон</th>
+                <th class="email editable" tag="EMAIL" type="text" maxlength="255">E-Mail</th>
+                <th class="user editable" tag="USER_ID" showTag="USER_NAME" type="select" object="user">Пользователь</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script id="adminSMSStatusTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid sms_status">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="i_code editable" tag="I_CODE" type="int" mandatoty="true">Цифровой код</th>
+                <th class="code editable" tag="CODE" type="text" maxlength="32" mandatoty="true">Код</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="50" mandatoty="true">Название</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script id="adminSMSErrorTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid sms_status">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="i_code editable" tag="I_CODE" type="int" mandatoty="true">Цифровой код</th>
+                <th class="code editable" tag="CODE" type="text" maxlength="32" mandatoty="true">Код</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="50" mandatoty="true">Название</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script id="adminEventTypeTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid roles">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="code editable" tag="CODE" type="text" maxlength="50" mandatoty="true">Код</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="50" mandatoty="true">Название</th>
+                <th class="descr editable" tag="DESCR" type="textarea" maxlength="255" mandatoty="true">Описание</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
+
+<script id="adminMailboxTableTmpl" type="text/x-dot-template">
+    <div class="wrapper">
+        <div class="actions"></div>
+        <table class="grid mailboxes">
+            <tr>
+                <th class="id" tag="ID" type="int">ID</th>
+                <th class="name editable" tag="NAME" type="text" maxlength="128" mandatoty="true">Название</th>
+                <th class="password editable" tag="PASSWORD" type="text" maxlength="50" mandatoty="true" hidden-value="true">Пароль</th>
+                <th class="queue editable" tag="QUEUE" type="checkbox">Очередь?</th>
+                <th class="mobile_users editable" tag="MOBILE_USERS" type="icon">Пользователи</th>
+                <th class="action"></th>
+            </tr>
+        </table>
+    </div>
+</script>
